@@ -5,7 +5,7 @@ import numpy as np
 # import mediapipe as mp #########? install
 # import utils
 # import numpy as np
-# from pathlib import Path
+from pathlib import Path
 # import time
 
 
@@ -42,8 +42,8 @@ class VideoHandlerConsumer(AsyncWebsocketConsumer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         ######################### setup recoding folder
-        # Path('./project/static/recordings').mkdir(parents=True, exist_ok=True)
-        # self.recPath = Path('././project/static/recordings').absolute()
+        Path('./project/static/recordings').mkdir(parents=True, exist_ok=True)
+        self.recPath = Path('././project/static/recordings').absolute()
 
         # ##################### classes initilizations
         # self.fastfacedetect = mp.solutions.face_detection
