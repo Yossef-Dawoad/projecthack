@@ -1,73 +1,73 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
 import numpy as np
-import cv2
-import mediapipe as mp #########? install
+# import cv2
+# import mediapipe as mp #########? install
 # import utils
-import numpy as np
-from pathlib import Path
-import time
+# import numpy as np
+# from pathlib import Path
+# import time
 
 
-class TimeTracker:
-    def __init__(self) -> None:
-        self.primetime = time.time()
-        self.ptime2 = time.time() ### track the seconds passes
+# class TimeTracker:
+#     def __init__(self) -> None:
+#         self.primetime = time.time()
+#         self.ptime2 = time.time() ### track the seconds passes
     
-    def current_time(self):
-        return time.time()
+#     def current_time(self):
+#         return time.time()
 
-    def fps_calculate(self):
-        fps = 1 / (self.current_time() - self.primetime)
-        self.primetime = self.current_time()
-        return fps
+#     def fps_calculate(self):
+#         fps = 1 / (self.current_time() - self.primetime)
+#         self.primetime = self.current_time()
+#         return fps
     
-    def format_time(self, format: str="%y_%m_%d_%H_%M_%S"):
-        return time.strftime(format, time.localtime(self.current_time()))
+#     def format_time(self, format: str="%y_%m_%d_%H_%M_%S"):
+#         return time.strftime(format, time.localtime(self.current_time()))
 
-    def time_pass(self, time_pass_ms):
-        if (self.current_time() - self.ptime2)*1000.0 > time_pass_ms:
-            self.ptime2 = self.current_time()
-            return True
+#     def time_pass(self, time_pass_ms):
+#         if (self.current_time() - self.ptime2)*1000.0 > time_pass_ms:
+#             self.ptime2 = self.current_time()
+#             return True
 
 
-def decodeframes(imgbytes):
-    '''function that convert binary image(bytes) to usable image frame'''
-    arr = np.frombuffer(imgbytes, dtype=np.int8) # convert bytes into array of int8
-    img = cv2.imdecode(arr, cv2.IMREAD_COLOR) # incode the image back to normal
-    return img
+# def decodeframes(imgbytes):
+#     '''function that convert binary image(bytes) to usable image frame'''
+#     arr = np.frombuffer(imgbytes, dtype=np.int8) # convert bytes into array of int8
+#     img = cv2.imdecode(arr, cv2.IMREAD_COLOR) # incode the image back to normal
+#     return img
 
 class VideoHandlerConsumer(AsyncWebsocketConsumer):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         ######################### setup recoding folder
-        Path('./project/static/recordings').mkdir(parents=True, exist_ok=True)
-        self.recPath = Path('././project/static/recordings').absolute()
+        # Path('./project/static/recordings').mkdir(parents=True, exist_ok=True)
+        # self.recPath = Path('././project/static/recordings').absolute()
 
-        ##################### classes initilizations
-        self.fastfacedetect = mp.solutions.face_detection
-        self.tt = TimeTracker()
-        self.fourcc = cv2.VideoWriter_fourcc(*'XVID') ##### video encoding setup,   *'mp4v' -> mp4
+        # ##################### classes initilizations
+        # self.fastfacedetect = mp.solutions.face_detection
+        # self.tt = TimeTracker()
+        # self.fourcc = cv2.VideoWriter_fourcc(*'XVID') ##### video encoding setup,   *'mp4v' -> mp4
 
-        ####################### video recording flags
-        self.RECORDING_EN = False
-        self.STOPED_DETECTION_FLAG = False
-        self.STOP_TOLERANCE_IN_SECONDS = 5
-        ####################### Camera configrations
-        self.WIDTH = 640
-        self.HEIGHT = 480
-        self.ColorConversion = cv2.cvtColor
-        self.adjust_result = self.handel_net_result
-        self.mp_drawing = mp.solutions.drawing_utils
+        # ####################### video recording flags
+        # self.RECORDING_EN = False
+        # self.STOPED_DETECTION_FLAG = False
+        # self.STOP_TOLERANCE_IN_SECONDS = 5
+        # ####################### Camera configrations
+        # self.WIDTH = 640
+        # self.HEIGHT = 480
+        # self.ColorConversion = cv2.cvtColor
+        # self.adjust_result = self.handel_net_result
+        # self.mp_drawing = mp.solutions.drawing_utils
     
-    def handel_net_result(self, dim):
-        xmin, ymin, width, height = dim.xmin , dim.ymin, dim.width, dim.height
-        width = width * self.WIDTH
-        height = height * self.HEIGHT
-        xmin = xmin * (128 + self.WIDTH) - (width/2)
-        ymin = ymin * (128 + self.HEIGHT) - (height/2)
-        return  int(xmin), int(ymin) , int(width), int(height)
+    # def handel_net_result(self, dim):
+    #     xmin, ymin, width, height = dim.xmin , dim.ymin, dim.width, dim.height
+    #     width = width * self.WIDTH
+    #     height = height * self.HEIGHT
+    #     xmin = xmin * (128 + self.WIDTH) - (width/2)
+    #     ymin = ymin * (128 + self.HEIGHT) - (height/2)
+    #     return  int(xmin), int(ymin) , int(width), int(height)
     ############################################################## 
     async def connect(self):
         self.roomName = "video_pool"
