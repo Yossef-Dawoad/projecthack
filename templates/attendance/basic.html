@@ -44,12 +44,14 @@
 				</div>
 			</li> -->
 			<li class="nav-item active float-right">
-				<form class="form-inline my-2 my-lg-0" action="/logout/" method="post">{% csrf_token %}
+				<form class="form-inline my-2 my-lg-0" action="/logout/" method="post">
+					{% csrf_token %}
 					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
 				</form>
 			</li>
 		</ul>
-		<form class="form-inline my-2 my-lg-0" action="/searchuser/" method="post">{% csrf_token %}
+		<form class="form-inline my-2 my-lg-0" action="/searchuser/" method="post">
+			{% csrf_token %}
 			<input class="form-control mr-sm-2" name="search" type="search" placeholder="Search User by ID"
 				   aria-label="Search">
 			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
