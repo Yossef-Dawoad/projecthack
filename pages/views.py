@@ -9,8 +9,8 @@ import sys
 
 def index(request):
     files = list()
-    rec_path  = os.path.join(os.path.abspath(os.getcwd()),'project\\static\\recordings')
-    output_directory = os.path.join(rec_path , 'mp4Videos\\')
+    rec_path  = os.path.join(os.path.abspath(os.getcwd()),'project/static/recordings')
+    output_directory = os.path.join(rec_path , 'mp4Videos/')
 
     input_directory = output_directory
     aviFiles = glob.glob(input_directory + '/*.avi')
@@ -39,7 +39,10 @@ def index(request):
 def avi2mp4(file_name, output_directory):
     input_name = file_name
     output_name = ntpath.basename(file_name)
+    print(output_name)
     output = output_directory + output_name.replace('.avi', '.mp4', 1)
+    print(output)
+    print("**************************")
     cmd = 'ffmpeg -i "{input}"  -c:a copy -c:v vp9 -b:v 100K "{output}"'.format(input = input_name, output = output)
     print('#'*50)
     print(output)
@@ -66,7 +69,7 @@ def draw_img(num):
         draw = ImageDraw.Draw(img)
         font = ImageFont.truetype("arial.ttf", 200)
         draw.text((150, -30),str(i),(250,250,250),font=font)    #! Color
-        savefile = os.path.join(os.path.abspath(os.getcwd()),'project\\static\\images\\')
+        savefile = os.path.join(os.path.abspath(os.getcwd()),'project/static/images/')
         # print(savefile)
         # print(savefile + 'num '+str(i)+'.jpg')
         img.save(savefile +str(i)+'.jpg')
