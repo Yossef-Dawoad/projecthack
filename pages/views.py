@@ -60,14 +60,14 @@ def draw_img(num):
 
     img = Image.new('RGB', (300,300), (17,29,70))  #! Color
     draw = ImageDraw.Draw(img)
-    font = ImageFont.truetype("arial.ttf", 400) ############# "OpenSans-Regular.ttf"
+    font = ImageFont.truetype("OpenSans-Regular.ttf", 400) ############# "OpenSans-Regular.ttf"
     draw.text((180, -30),"?",(250,250,250),font=font)     #! Color
 
     # plot digit numbers (from 0 to ...):
     for i in range(num):
         img = Image.new('RGB', (300,300), (17,29,70))   #! Color
         draw = ImageDraw.Draw(img)
-        font = ImageFont.truetype("arial.ttf", 200)
+        font = ImageFont.truetype("OpenSans-Regular.ttf", 200)
         draw.text((150, -30),str(i),(250,250,250),font=font)    #! Color
         savefile = os.path.join(os.path.abspath(os.getcwd()),'project/static/images/')
         # print(savefile)
