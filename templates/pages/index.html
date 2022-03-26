@@ -288,6 +288,7 @@
                 <h2 class="text-white mb-5 heading">Contact</h2>
 
                 <form action="#">
+                  {% csrf_token %}
                   <div class="row form-group">
                     <div class="col-md-6 mb-3 mb-md-0">
                       <label class="text-white" for="fname">First Name</label>

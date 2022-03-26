@@ -10,14 +10,16 @@
       <h1 class="text-center">MANAGE DETAILS</h1>
       <br>
       <label>Enter ID to Select Card</label>
-      <form class="form-inline" action="/cardselect/" method="post"> {% csrf_token %}
+      <form class="form-inline" action="/cardselect/" method="post"> 
+        {% csrf_token %}
         <input type="text" name="idsearch" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2"
           placeholder="Enter ID">
         <input type="submit" name="sel" class="btn btn-warning mb-2"></input>
         <button type="submit" name="del" class="btn btn-danger mb-2 ml-2 ">Remove</button>
       </form>
       <label class="text-center">{{cardstatus}}</label>
-      <form action="/cardedit/" method="post"> {% csrf_token %}
+      <form action="/cardedit/" method="post"> 
+        {% csrf_token %}
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" name="name" class="form-control" id="name" placeholder="Enter Name">
