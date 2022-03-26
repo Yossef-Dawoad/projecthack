@@ -8,32 +8,32 @@ import sys
 # Create your views here.
 
 def index(request):
-    files = list()
-    rec_path  = os.path.join(os.path.abspath(os.getcwd()),'project/static/recordings')
-    output_directory = os.path.join(rec_path , 'mp4Videos/')
+    # files = list()
+    # rec_path  = os.path.join(os.path.abspath(os.getcwd()),'project/static/recordings')
+    # output_directory = os.path.join(rec_path , 'mp4Videos/')
 
-    input_directory = output_directory
-    aviFiles = glob.glob(input_directory + '/*.avi')
-    for rec in aviFiles:
-        try:
-            avi2mp4(rec, output_directory)
-        except:
-            raise
+    # input_directory = output_directory
+    # aviFiles = glob.glob(input_directory + '/*.avi')
+    # for rec in aviFiles:
+    #     try:
+    #         avi2mp4(rec, output_directory)
+    #     except:
+    #         raise
 
     # print('#'*50)
     # print(output_directory)
     # print('#'*50)
-    recs =os.listdir(output_directory) 
-    draw_img(len(recs))
+    # recs =os.listdir(output_directory) 
+    # draw_img(len(recs))
     
-    for counter , rec in enumerate(recs):
-        record = {rec:os.path.join(output_directory,rec) , 'counter':counter}
-        files.append(record)
-        print('#'*50)
-        print(counter)
-        print('#'*50)
+    # for counter , rec in enumerate(recs):
+    #     record = {rec:os.path.join(output_directory,rec) , 'counter':counter}
+    #     files.append(record)
+    #     print('#'*50)
+    #     print(counter)
+    #     print('#'*50)
 
-    return render(request, 'pages/index.html',{"files":files})
+    return render(request, 'pages/index.html',{"files":[]})
     
 
 def avi2mp4(file_name, output_directory):
