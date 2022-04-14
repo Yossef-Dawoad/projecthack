@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-zaj8(y%+obwl23=21^46iooabh8hhds45l9rcp^om6k5xx2pgr'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['eyeplus.herokuapp.com', '127.0.0.1']
 
