@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-zaj8(y%+obwl23=21^46iooabh8hhds45l9rcp^om6k5xx2pgr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['eyeplus.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['eyeplus.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -144,9 +144,13 @@ STATICFILES_DIRS=[
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_ALL_ORIGINS = True
+DEBUG_PROPAGATE_EXCEPTIONS = True
