@@ -354,8 +354,8 @@
   <script src=" {% static 'js/main.js' %} "></script>
 
   <script>
-    let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws" //! New
-    const socket = new WebSocket(`ws://${window.location.host}/ws/video/feed/`);
+    let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws" //! secure websocket support
+    const socket = new WebSocket(`${ws_scheme}://${window.location.host}/ws/video/feed/`);
     let video_feed = document.querySelector('#video-stream');
     socket.onmessage = function (e) {
       let blobout = e.data

@@ -1,6 +1,5 @@
-# Django #
+__pycache__/
+.idea/
 *.log
 *.pot
 *.pyc
-__pycache__
-.idea
