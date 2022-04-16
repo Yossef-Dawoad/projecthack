@@ -15,11 +15,13 @@ class VideoHandlerConsumer(AsyncWebsocketConsumer):
         )
         await self.accept()
 
+
     async def disconnect(self, close_code):
         await self.channel_layer.group_discard(
             self.roomName,
             self.channel_name
         )
+
 
 
     async def receive(self, text_data=None, bytes_data=None):
