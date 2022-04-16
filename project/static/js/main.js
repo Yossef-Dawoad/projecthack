@@ -268,21 +268,21 @@ jQuery(document).ready(function($) {
 
 });
 
-$(function() {
+// $(function() {
 
-  // rome(inline_cal, { time: false });
-
-
-	rome(inline_cal_from, {time: true, inputFormat: 'MMMM DD,YYYY hh:mm A', dateValidator: rome.val.beforeEq(inline_cal_to)}).on('data', function (value) {
-	  result_from.value = value;
-	});
-
-	rome(inline_cal_to, {time: true, inputFormat: 'MMMM DD,YYYY hh:mm A', dateValidator: rome.val.afterEq(inline_cal_from)}).on('data', function (value) {
-	  result_to.value = value;
-	});
+//   // rome(inline_cal, { time: false });
 
 
-});
+// 	rome(inline_cal_from, {time: true, inputFormat: 'MMMM DD,YYYY hh:mm A', dateValidator: rome.val.beforeEq(inline_cal_to)}).on('data', function (value) {
+// 	  result_from.value = value;
+// 	});
+
+// 	rome(inline_cal_to, {time: true, inputFormat: 'MMMM DD,YYYY hh:mm A', dateValidator: rome.val.afterEq(inline_cal_from)}).on('data', function (value) {
+// 	  result_to.value = value;
+// 	});
+
+
+// });
 
 $('.btn-toggle').click(function() {
   $(this).find('.btn').toggleClass('active');
