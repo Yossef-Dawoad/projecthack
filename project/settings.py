@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-zaj8(y%+obwl23=21^46iooabh8hhds45l9rcp^om6k5xx2pgr
 DEBUG = False
 
 ALLOWED_HOSTS = ['eyeplus.herokuapp.com', '127.0.0.1', 'localhost']
-
+ALLOWED_HOSTS += ['*']
 # Application definition
 
 INSTALLED_APPS = [

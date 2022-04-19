@@ -104,7 +104,10 @@
                 <figure>
                   <a href="https://www.youtube.com/embed/w36ZmkgkPww" class="d-block photo-item"
                     data-fancybox="gallery">
-                    <img src="{% static 'images/stream-Bg2.png' %}" id="video-stream" alt="Image" class="img-fluid" />
+                    <!-- <img src="{% static 'images/stream-Bg2.png' %}" id="video-stream" alt="Image" class="img-fluid" /> -->
+                    
+                     <!-- FIXME -->
+                     <canvas id="my-canvas" class="img-fluid" width="500px" height="300px"/> </canvas>
                     <div class="photo-text-more">
                     </div>
                   </a>
@@ -355,13 +358,32 @@
   <script src=" {% static 'js/main.js' %} "></script>
 
   <script>
+    ////////////////////////////////////////////////////COMMENT
+    // image on canvas tutorial by freeCodeCamp 
+    // https://www.freecodecamp.org/news/how-displaying-an-image-on-html5-canvas-works-13e3f6a6c4bd/ 
+    const image = new Image(); 
+    const canvas = document.getElementById('my-canvas');
+    const ctx = canvas.getContext('2d');
+    
+
+    /////////////////////////////////////////////////////COMMENT END
     let ws_scheme = window.location.protocol == "https:" ? "wss" : "ws" //! secure websocket support
     const socket = new WebSocket(`${ws_scheme}://${window.location.host}/ws/video/feed/`);
-    let video_feed = document.querySelector('#video-stream');
+
     socket.onmessage = function (e) {
-      let blobout = e.data
-      let url = URL.createObjectURL(blobout)
-      video_feed.src = url
+      let bloboutimage = e.data
+
+      //% handel text added to the image bytes
+      // let bloboutimage = e.data.slice(0, -2)
+      // let fps =  e.data.slice(-2);
+      // fps.text().then(text => {
+      //   console.log(text);
+      // })
+
+      let image_url = URL.createObjectURL(bloboutimage)
+      image.src = image_url
+      image.onload = () => ctx.drawImage(image, 0, 0);
+
     }
   </script>
 
